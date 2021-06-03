@@ -1,11 +1,11 @@
 {
-  "name": "evelution/publishable",
-  "description": "Adds a publishable trait",
+  "name": "evelution87/publishable",
+  "description": "Adds a publishable trait for Laravel",
   "keywords": [
     "evelution",
     "publishable"
   ],
-  "homepage": "https://github.com/evelution/publishable",
+  "homepage": "https://github.com/evelution87/publishable",
   "license": "MIT",
   "type": "library",
   "authors": [
@@ -38,12 +38,6 @@
     "test": "vendor/bin/phpunit",
     "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
   },
-  "repositories": [
-    {
-      "type": "path",
-      "url": "../*"
-    }
-  ],
   "config": {
     "sort-packages": true
   },
