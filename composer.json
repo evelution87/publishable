@@ -17,7 +17,7 @@
   ],
   "require": {
     "php": "^7.4|^8.0",
-    "laravel/framework": "^8.0",
+    "laravel/framework": "~8",
     "nesbot/carbon": "^2.47",
     "ext-json": "*"
   },
