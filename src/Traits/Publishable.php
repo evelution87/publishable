@@ -18,12 +18,12 @@ trait Publishable {
 	
 	public function getPublishedAttribute() {
 		return ! is_null( $this->{$this->getPublishedAtColumn()} )
-		       && $this->{$this->getPublishedAtColumn()} <= Carbon::now();
+			   && $this->{$this->getPublishedAtColumn()} <= Carbon::now();
 	}
 	
 	public function getScheduledAttribute() {
 		return ! is_null( $this->{$this->getPublishedAtColumn()} )
-		       && $this->{$this->getPublishedAtColumn()} > Carbon::now();
+			   && $this->{$this->getPublishedAtColumn()} > Carbon::now();
 	}
 	
 	public function getDraftAttribute() {
@@ -42,24 +42,16 @@ trait Publishable {
 		return $query->whereNotNull( $this->getPublishedAtColumn() )->where( $this->getPublishedAtColumn(), '>', Carbon::now() );
 	}
 	
-	public function boolean_publish_now( $boolean, $save = false ) {
+	public function publish_if( $boolean, $save = false, $force = false ) {
 		if ( $boolean ) {
-			$this->publish_now( $save );
+			$this->publish( $save, $force );
 		} else {
 			$this->unpublish( $save );
 		}
 	}
 	
-	public function boolean_publish( $boolean, $save = false ) {
-		if ( $boolean ) {
-			$this->publish( $save );
-		} else {
-			$this->unpublish( $save );
-		}
-	}
-	
-	public function publish( $save = false ) {
-		if ( is_null( $this->{$this->getPublishedAtColumn()} ) ) {
+	public function publish( $save = false, $force = false ) {
+		if ( $force || is_null( $this->{$this->getPublishedAtColumn()} ) ) {
 			$this->{$this->getPublishedAtColumn()} = Carbon::now();
 			if ( $save ) {
 				$this->save();
@@ -69,13 +61,6 @@ trait Publishable {
 	
 	public function schedule( $date_time, $save = false ) {
 		$this->{$this->getPublishedAtColumn()} = $date_time;
-		if ( $save ) {
-			$this->save();
-		}
-	}
-	
-	public function publish_now( $save = false ) {
-		$this->{$this->getPublishedAtColumn()} = Carbon::now();
 		if ( $save ) {
 			$this->save();
 		}
