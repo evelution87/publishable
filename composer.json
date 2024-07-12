@@ -17,7 +17,7 @@
   ],
   "require": {
     "php": "^7.4|^8.0",
-    "illuminate/support": "^8.0",
+    "laravel/framework": "^8.0",
     "nesbot/carbon": "^2.47",
     "ext-json": "*"
   },
@@ -28,11 +28,6 @@
   "autoload": {
     "psr-4": {
       "Evelution\\Publishable\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Evelution\\Publishable\\Tests\\": "tests"
     }
   },
   "scripts": {
